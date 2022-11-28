@@ -57,18 +57,37 @@ class TestSezon:
     #     assert t =='Характеристики'
 
 
-    def test_tangerines_video(self, ozon_sezon):
-        ozon_sezon.open_sezon()
-        ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
-        ozon_sezon.click_to_tabs_sezon(Sezon.VIDEO)
-        text = ozon_sezon.get_element_sezon_text(Sezon.VIDEO_VALUE)
-        assert text =='Фото и видео пользователей 122'
+    @pytest.mark.parametrize('locator, locator_text, text_to_check', [
+        (Sezon.PAYMENT, Sezon.PAYMENT_VALUE, 'Способы оплаты'),
+        (Sezon.DELIVERY_TERMS, Sezon.DELIVERY_TERMS_VALUE, 'Стоимость доставки'),
+        (Sezon.RETURN_OF_DOODS, Sezon.RETURN_OF_DOODS_VALUE, 'Как вернуть товар'),
+        (Sezon.REFUND, Sezon.REFUND_VALUE, 'Возврат денег'),
 
-    def test_collections(self, ozon_sezon):
+    ])
+    def test_frequently_asked_questions(self, ozon_sezon, locator, locator_text, text_to_check):
         ozon_sezon.open_sezon()
         ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
-        text = ozon_sezon.get_element_sezon_text(Sezon.COLLECTIONS)
-        assert text == 'Подборки товаров в категории Цитрусовые'
+        ozon_sezon.click_to_tabs_sezon(locator)
+        ozon_sezon.switch_browser_tab()
+        text = ozon_sezon.get_element_sezon_text(locator_text)
+        assert text == text_to_check
+
+
+
+    def test_oo(self, ozon_sezon):
+        ozon_sezon.open_sezon()
+        ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
+        ozon_sezon.find_element_and_click(Sezon.OO)
+        time.sleep(5)
+        text = ozon_sezon.get_element_sezon_text(Sezon.O_OO)
+        assert text == 'Уточнение адреса'
+
+
+    def test_ttt(self, ozon_sezon):
+        ozon_sezon.open_sezon()
+        ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
+        ozon_sezon.find_element_and_click(Sezon.PP)
+        time.sleep(300)
 
 
     @pytest.mark.parametrize('locator, locator_text, text_to_check', [
@@ -85,49 +104,30 @@ class TestSezon:
 
 
 
-    # def test_e(self, ozon_sezon):
-    #     ozon_sezon.open_sezon()
-    #     ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
-    #     ozon_sezon.click_to_tabs_sezon(Sezon.E)
-    #     text = ozon_sezon.get_element_sezon_text(Sezon.E_E)
-    #     assert text == 'Узнайте о снижении цены'
-
-    def test_q(self, ozon_sezon):
+    def test_c(self, ozon_sezon):
         ozon_sezon.open_sezon()
         ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
-        ozon_sezon.click_to_tabs_sezon(Sezon.Y)
-        text = ozon_sezon.get_element_sezon_text(Sezon.Y_Y)
-        assert text == 'Введите номер телефона'
+        ozon_sezon.find_element_and_click(Sezon.MOSCOW)
+        text = ozon_sezon.get_element_sezon_text(Sezon.MOSCOW_VALUE)
+        assert text == 'Куда доставить заказ?'
 
-    # def test_delivery(self, ozon_sezon):
-    #     ozon_sezon.open_sezon()
-    #     ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
-    #     ozon_sezon.click_to_tabs_sezon(Sezon.DELIVERY)
-    #     text = ozon_sezon.get_element_sezon_text(Sezon.DELIVERY_VALUE)
-    #     assert text == 'Стоимость доставки'
-    #
-    def test_oplata(self, ozon_sezon):
+
+
+    def test_collections(self, ozon_sezon):
         ozon_sezon.open_sezon()
         ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
-        ozon_sezon.click_to_tabs_sezon(Sezon.TR)
-        ozon_sezon.switch_browser_tab()
-        text = ozon_sezon.get_element_sezon_text(Sezon.TU)
-        assert text == 'Способы оплаты'
+        ozon_sezon.find_element_and_click(Sezon.PICK_UP_POINTS)
+        text = ozon_sezon.get_element_sezon_text(Sezon.PICK_UP_POINTS_VALUE)
+        assert text == 'Москва - пункты выдачи заказов OZON'
 
-
-    def test_oo(self, ozon_sezon):
+    def test_e(self, ozon_sezon):
         ozon_sezon.open_sezon()
         ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
-        ozon_sezon.find_element_and_click(Sezon.OO)
-        time.sleep(6)
-
-    def test_ttt(self, ozon_sezon):
-        ozon_sezon.open_sezon()
-        ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
-        ozon_sezon.find_element_and_click(Sezon.PP)
-        time.sleep(300)
-
-
+        # ozon_sezon.find_element_and_click_via_script(Sezon.E)
+        element = ozon_sezon.driver.find_element(*Sezon.E)
+        element.click()
+        text = ozon_sezon.get_element_sezon_text(Sezon.E_E)
+        assert text == 'Уточнение адреса'
 
 
 

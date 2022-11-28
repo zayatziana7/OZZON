@@ -26,3 +26,4 @@ class OzonProductsLocatorss:
     OUR_CONFECTIONERY_VALUE = (By.XPATH, "//h1[contains(text(), 'Наша кондитерская')]")
     PREPARED = (By.XPATH, "//a[@href='/category/supermarket-gotovye-blyuda-9521000/ozon-fresh-100226176/?miniapp=supermarket']")
     PREPARED_VALUE = (By.XPATH, "//h1[contains(text(), 'Готовая еда Ozon fresh')]")
+    # избавиться от кавычек = (By.CSS_SELECTOR, "//div[contains(text(), 'Хурма \"Бычье сердце\", спелая мякоть, Азербайджан, 750 г')]")

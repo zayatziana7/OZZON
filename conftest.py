@@ -12,6 +12,7 @@ from mane_page.gastronomy_page import OzonGastronomyPage
 from mane_page.house_garden_page import OzonHouseGardenPage
 from mane_page.mothers_children_page import OzonMothersСhildrenPage
 from mane_page.ozon_fresh_page import OzonPages
+from mane_page.pet_supplies_page import OzonPetSuppliesPage
 from mane_page.products_page import OzonProductsPage
 from mane_page.sezon_page import OzonSezonPage
 
@@ -58,6 +59,10 @@ def ozon(driver):
 @pytest.fixture()
 def ozon_sezon(driver):
     return OzonSezonPage(driver)
+
+@pytest.fixture()
+def ozon_pet_supplies(driver):
+    return OzonPetSuppliesPage(driver)
 
 
 
