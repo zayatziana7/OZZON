@@ -1,94 +1,33 @@
+import pytest
+
 from locators.ozon_fresh_locators import OzonFreshPageLocators as Ozon
 from locators.products_locators import OzonProductsLocatorss as Products
 
 
 class TestProducts:
+
     def test_products(self, ozon_products):
         ozon_products.open_products()
         text = ozon_products.get_element_products_text(Ozon.OUR_PRODUCTS)
         assert text == "Наши продукты"
 
+    @pytest.mark.parametrize('locator, locator_text, text_to_check', [
+        (Products.DAIRY, Products.DAIRY_VALUE, "Молочные продукты и яйца Ozon fresh"),
+        (Products.CHEESES, Products.CHEESES_VALUE, "Сыры Ozon fresh"),
+        (Products.GASTRONOMY, Products.GASTRONOMY_VALUE, "Гастрономия Ozon fresh"),
+        (Products.GROCERY, Products.GROCERY_VALUE, "Бакалея Ozon fresh"),
+        (Products.SAUCES, Products.SAUCES_VALUE, "Соусы, джемы и мёд Ozon fresh"),
+        (Products.FROZEN, Products.FROZEN_FOOD_PRODUCTS, "Замороженные продукты Ozon fresh"),
+        (Products.SWEETS_SNACKS, Products.SWEETS_SNACKS_VALUE, "Снеки и сладости Ozon fresh"),
+        (Products.COFFEE_TEA, Products.COFFEE_TEA_VALUE, "Кофе и чай Ozon fresh"),
+        (Products.BEVERAGES, Products.BEVERAGES_VALUE, "Напитки Ozon fresh"),
+        (Products.PREPARED, Products.PREPARED_VALUE, "Готовая еда Ozon fresh"),
+        (Products.OUR_BARN, Products.OUR_BARN_VALUE, "Пекарня Ozon fresh"),
+        (Products.OUR_CONFECTIONERY, Products.OUR_CONFECTIONERY_VALUE, "Наша кондитерская")
 
-    def test_dairy(self, ozon_products):
+    ])
+    def test_products_tab(self, ozon_products, locator, locator_text, text_to_check):
         ozon_products.open_products()
-        ozon_products.click_to_tabs_products(Products.DAIRY)
-        text = ozon_products.get_element_products_text(Products.DAIRY_VALUE)
-        assert text == "Молочные продукты и яйца Ozon fresh"
-
-
-    def test_cheeses(self, ozon_products):
-        ozon_products.open_products()
-        ozon_products.click_to_tabs_products(Products.CHEESES)
-        text = ozon_products.get_element_products_text(Products.CHEESES_VALUE)
-        assert text == "Сыры Ozon fresh"
-
-
-    def test_gastronomy(selfб, ozon_products):
-        ozon_products.open_products()
-        ozon_products.click_to_tabs_products(Products.GASTRONOMY)
-        text = ozon_products.get_element_products_text(Products.GASTRONOMY_VALUE)
-        assert text == "Гастрономия Ozon fresh"
-
-
-    def test_grocery(selfб, ozon_products):
-        ozon_products.open_products()
-        ozon_products.click_to_tabs_products(Products.GROCERY)
-        text = ozon_products.get_element_products_text(Products.GROCERY_VALUE)
-        assert text == "Бакалея Ozon fresh"
-
-
-    def test_sauces(selfб, ozon_products):
-        ozon_products.open_products()
-        ozon_products.click_to_tabs_products(Products.SAUCES)
-        text = ozon_products.get_element_products_text(Products.SAUCES_VALUE)
-        assert text == "Соусы, джемы и мёд Ozon fresh"
-
-
-    def test_frozen_food(selfб, ozon_products):
-        ozon_products.open_products()
-        ozon_products.click_to_tabs_products(Products.FROZEN)
-        text = ozon_products.get_element_products_text(Products.FROZEN_FOOD_PRODUCTS)
-        assert text == "Замороженные продукты Ozon fresh"
-
-
-    def test_sweets_and_snacks(self, ozon_products):
-        ozon_products.open_products()
-        ozon_products.click_to_tabs_products(Products.SWEETS_SNACKS)
-        text = ozon_products.get_element_products_text(Products.SWEETS_SNACKS_VALUE)
-        assert text == "Снеки и сладости Ozon fresh"
-
-
-    def test_coffee_and_tea(selfб, ozon_products):
-        ozon_products.open_products()
-        ozon_products.click_to_tabs_products(Products.COFFEE_TEA)
-        text = ozon_products.get_element_products_text(Products.COFFEE_TEA_VALUE)
-        assert text == "Кофе и чай Ozon fresh"
-
-
-    def test_beverages(selfб, ozon_products):
-        ozon_products.open_products()
-        ozon_products.click_to_tabs_products(Products.BEVERAGES)
-        text = ozon_products.get_element_products_text(Products.BEVERAGES_VALUE)
-        assert text == "Напитки Ozon fresh"
-
-
-    def test_prepared_food(selfб, ozon_products):
-        ozon_products.open_products()
-        ozon_products.click_to_tabs_products(Products.PREPARED)
-        text = ozon_products.get_element_products_text(Products.PREPARED_VALUE)
-        assert text == "Готовая еда Ozon fresh"
-
-
-    def test_our_barn(selfб, ozon_products):
-        ozon_products.open_products()
-        ozon_products.click_to_tabs_products(Products.OUR_BARN)
-        text = ozon_products.get_element_products_text(Products.OUR_BARN_VALUE)
-        assert text == "Пекарня Ozon fresh"
-
-
-    def test_our_confectionery(selfб, ozon_products):
-        ozon_products.open_products()
-        ozon_products.click_to_tabs_products(Products.OUR_CONFECTIONERY)
-        text = ozon_products.get_element_products_text(Products.OUR_CONFECTIONERY_VALUE)
-        assert text == "Наша кондитерская"
-
+        ozon_products.click_to_tabs_products(locator)
+        text = ozon_products.get_element_products_text(locator_text)
+        assert text == text_to_check

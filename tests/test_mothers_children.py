@@ -1,3 +1,5 @@
+import pytest
+
 from locators.mothers_children_locators import OzonMothersChildrenLocators as Mothers
 
 
@@ -9,40 +11,18 @@ class TestMothersChildren:
         text = ozon_mothers_children.get_element_mothers_children_text(Mothers.MOTHERS_AND_CHILDREN)
         assert text == "Товары для мам и детей"
 
-
-    def test_toys_and_games(self, ozon_mothers_children):
+    @pytest.mark.parametrize('locator, locator_text, text_to_check', [
+        (Mothers.TOYS_AND_GAMES, Mothers.TOYS_AND_GAMES_VALUE, "Игрушки и игры"),
+        (Mothers.CHILDREN_FOOD, Mothers.CHILDREN_FOOD_VALUE,"Детское питание"),
+        (Mothers.DIAPETS_AND_CARE, Mothers.DIAPETS_AND_CARE_VALUE, "Детская гигиена и уход"),
+        (Mothers.FEEDING_AND_ELECTRONICS, Mothers.FEEDING_ELECTRONICS_VALUE, "Все товары по акции уже купили. Возможно, вам будут интересны другие предложения"),
+        (Mothers.FOR_MOMS, Mothers.FOR_MOMS_VALUE, "Товары для мам")
+    ])
+    def test_mothers_children_tab(self, ozon_mothers_children, locator, locator_text, text_to_check):
         ozon_mothers_children.open_mothers_children()
-        ozon_mothers_children.click_to_tabs_mothers_children(Mothers.TOYS_AND_GAMES)
-        text = ozon_mothers_children.get_element_mothers_children_text(Mothers.TOYS_AND_GAMES_VALUE)
-        assert text == "Игрушки и игры"
-
-
-    def test_children_food(self, ozon_mothers_children):
-        ozon_mothers_children.open_mothers_children()
-        ozon_mothers_children.click_to_tabs_mothers_children(Mothers.CHILDREN_FOOD)
-        text = ozon_mothers_children.get_element_mothers_children_text(Mothers.CHILDREN_FOOD_VALUE)
-        assert text == "Детское питание"
-
-
-    def test_diapers_and_care(self, ozon_mothers_children):
-        ozon_mothers_children.open_mothers_children()
-        ozon_mothers_children.click_to_tabs_mothers_children(Mothers.DIAPETS_AND_CARE)
-        text = ozon_mothers_children.get_element_mothers_children_text(Mothers.DIAPETS_AND_CARE_VALUE)
-        assert text == "Детская гигиена и уход"
-
-
-    def test_feeding_and_electronics(self, ozon_mothers_children):
-        ozon_mothers_children.open_mothers_children()
-        ozon_mothers_children.click_to_tabs_mothers_children(Mothers.FEEDING_AND_ELECTRONICS)
-        text = ozon_mothers_children.get_element_mothers_children_text(Mothers.FEEDING_ELECTRONICS_VALUE)
-        assert text == "Все товары по акции уже купили. Возможно, вам будут интересны другие предложения"
-
-
-    def test_for_moms(self, ozon_mothers_children):
-        ozon_mothers_children.open_mothers_children()
-        ozon_mothers_children.click_to_tabs_mothers_children(Mothers.FOR_MOMS)
-        text = ozon_mothers_children.get_element_mothers_children_text(Mothers.FOR_MOMS_VALUE)
-        assert text == "Товары для мам"
+        ozon_mothers_children.click_to_tabs_mothers_children(locator)
+        text = ozon_mothers_children.get_element_mothers_children_text(locator_text)
+        assert text == text_to_check
 
 
     def test_clothes_and_accessories(self, ozon_mothers_children):
