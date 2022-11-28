@@ -30,15 +30,12 @@ class TestSezon:
         text = ozon_sezon.get_element_sezon_text(locator_text)
         assert text == text_to_check
 
-
-
     def test_reviews(self, ozon_sezon):
         ozon_sezon.open_sezon()
         ozon_sezon.click_to_tabs_sezon(Sezon.ASPARAGUS)
         ozon_sezon.click_to_tabs_sezon(Sezon.REVIEWS)
         text = ozon_sezon.get_element_sezon_text(Sezon.REVIEWS_VALUE)
         assert text == 'Отзывы'
-
 
     # def test_question_asparagus(self, ozon_sezon):
     #     ozon_sezon.open_sezon()
@@ -56,7 +53,6 @@ class TestSezon:
     #     time.sleep(8)
     #     assert t =='Характеристики'
 
-
     @pytest.mark.parametrize('locator, locator_text, text_to_check', [
         (Sezon.PAYMENT, Sezon.PAYMENT_VALUE, 'Способы оплаты'),
         (Sezon.DELIVERY_TERMS, Sezon.DELIVERY_TERMS_VALUE, 'Стоимость доставки'),
@@ -72,8 +68,6 @@ class TestSezon:
         text = ozon_sezon.get_element_sezon_text(locator_text)
         assert text == text_to_check
 
-
-
     def test_oo(self, ozon_sezon):
         ozon_sezon.open_sezon()
         ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
@@ -82,13 +76,11 @@ class TestSezon:
         text = ozon_sezon.get_element_sezon_text(Sezon.O_OO)
         assert text == 'Уточнение адреса'
 
-
     def test_ttt(self, ozon_sezon):
         ozon_sezon.open_sezon()
         ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
         ozon_sezon.find_element_and_click(Sezon.PP)
         time.sleep(300)
-
 
     @pytest.mark.parametrize('locator, locator_text, text_to_check', [
         (Sezon.QUESTIOS, Sezon.QUESTIOS_VALUE, 'Задайте вопрос о товаре'),
@@ -102,16 +94,12 @@ class TestSezon:
         text = ozon_sezon.get_element_sezon_text(locator_text)
         assert text == text_to_check
 
-
-
     def test_c(self, ozon_sezon):
         ozon_sezon.open_sezon()
         ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
         ozon_sezon.find_element_and_click(Sezon.MOSCOW)
         text = ozon_sezon.get_element_sezon_text(Sezon.MOSCOW_VALUE)
         assert text == 'Куда доставить заказ?'
-
-
 
     def test_collections(self, ozon_sezon):
         ozon_sezon.open_sezon()
@@ -120,6 +108,7 @@ class TestSezon:
         text = ozon_sezon.get_element_sezon_text(Sezon.PICK_UP_POINTS_VALUE)
         assert text == 'Москва - пункты выдачи заказов OZON'
 
+    @pytest.mark.skip('Не открывается модалка')
     def test_e(self, ozon_sezon):
         ozon_sezon.open_sezon()
         ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
@@ -128,17 +117,3 @@ class TestSezon:
         element.click()
         text = ozon_sezon.get_element_sezon_text(Sezon.E_E)
         assert text == 'Уточнение адреса'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
