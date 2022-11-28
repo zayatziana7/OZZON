@@ -1,6 +1,7 @@
 import time
 
 import pytest
+from selenium.webdriver import ActionChains
 
 from locators.pet_supplies_locators import OzonPetSuppliesLocators as Pet
 
@@ -33,3 +34,15 @@ class TestPetSupplies:
         ozon_pet_supplies.click_to_tabs_pet_supplies(locator)
         text = ozon_pet_supplies.get_element_pet_supplies_text(locator_text)
         assert text == text_to_check
+    @pytest.mark.skip('не кликает по пункту')
+    @pytest.mark.parametrize('locator, locator_text', [
+        (Pet.OO, Pet.OO_OO),
+
+    ])
+    def test_kind_of_animal(self, ozon_pet_supplies, locator, locator_text):
+        ozon_pet_supplies.open_pet_supplies()
+        element = ozon_pet_supplies.driver.find_element(*locator)
+        actions = ActionChains(ozon_pet_supplies.driver)
+        actions.move_to_element(element).send_keys('Новинки')
+        ozon_pet_supplies.find_element_and_click_via_action_chains(locator).send_keys('Новинки')
+        ozon_pet_supplies.find_element_and_click_via_action_chains(locator_text)

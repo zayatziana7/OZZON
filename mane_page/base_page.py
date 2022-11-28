@@ -77,3 +77,4 @@ class BasePage:
             if tab != current_tab:
                 self.driver.switch_to.window(tab)
         return self
+

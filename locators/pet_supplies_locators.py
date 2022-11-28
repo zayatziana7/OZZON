@@ -23,8 +23,8 @@ class OzonPetSuppliesLocators:
     PI_PI_BENT_VALUE = (By.XPATH, "//h1[contains(text(), 'Товары для животных Pi-Pi-Bent')]")
     MORGE = (By.CSS_SELECTOR, 'a[href^="/category/supermarket-tovary-dlya-zhivotnyh-12300000/?miniapp=supermarket&brand=31266274"]')
     MORGE_VALUE = (By.XPATH, "//h1[contains(text(), 'Товары для животных Monge')]")
-    OO = (By.CSS_SELECTOR, "//div[contains(text(), 'Популярные')]")
-    OO_OO = (By.CSS_SELECTOR, "//div[contains(text(), 'Новинки')]")
+    OO = (By.XPATH, "//input[@role='combobox']")
+    OO_OO = (By.XPATH, "//div[contains(text(), 'Новинки')]")
 
 
 
