@@ -25,6 +25,7 @@ class OzonPetSuppliesLocators:
     MORGE_VALUE = (By.XPATH, "//h1[contains(text(), 'Товары для животных Monge')]")
     OO = (By.XPATH, "//input[@role='combobox']")
     OO_OO = (By.XPATH, "//div[contains(text(), 'Новинки')]")
+    WE = (By.XPATH, "//span[contains(text(), '105 товаров')]")
 
 
 

@@ -27,3 +27,4 @@ class OzonCheesesLocators:
     PICKLED_CHESEE_BRYNZA_VALUE = (By.XPATH, "//h1[contains(text(), 'Сыр рассольный Брынза Ozon fresh, 30%, 250г')]")
     CHEESE_RUSSIAN = (By.XPATH, "//span[contains(text(), 'Сыр Российский Ozon fresh, 45%, 200 г')]")
     CHEESE_RUSSIAN_VALUE = (By.XPATH, "//h1[contains(text(), 'Сыр Российский Ozon fresh, 45%, 200 г')]")
+    PRICE = (By.XPATH, "//div[@slot='content']//span[contains(text(), '₽')]")

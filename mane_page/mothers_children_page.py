@@ -12,5 +12,4 @@ class OzonMothersСhildrenPage(BasePage):
         return element.text
 
     def open_mothers_children(self):
-        self.click_to_tabs_mothers_children(OzonFreshPageLocators.OZON_FRESH)
         self.click_to_tabs_mothers_children(OzonFreshPageLocators.MOTHERS)

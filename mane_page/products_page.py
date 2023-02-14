@@ -12,5 +12,4 @@ class OzonProductsPage(BasePage):
         return element.text
 
     def open_products(self):
-        self.click_to_tabs_products(Ozon.OZON_FRESH)
         self.click_to_tabs_products(Ozon.PRODUCTS)

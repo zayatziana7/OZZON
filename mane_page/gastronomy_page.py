@@ -13,6 +13,5 @@ class OzonGastronomyPage(BasePage):
         return element.text
 
     def open_gastronomy(self):
-        self.click_to_tabs_gastronomy(OzonFreshPageLocators.OZON_FRESH)
         self.click_to_tabs_gastronomy(OzonFreshPageLocators.PRODUCTS)
         self.click_to_tabs_gastronomy(OzonProductsLocatorss.GASTRONOMY)

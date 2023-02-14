@@ -2,7 +2,7 @@ import pytest
 
 from locators.ozon_fresh_locators import OzonFreshPageLocators as Ozon
 from locators.products_locators import OzonProductsLocatorss as Products
-
+from hamcrest import assert_that, equal_to, greater_than
 
 class TestProducts:
 
@@ -30,4 +30,4 @@ class TestProducts:
         ozon_products.open_products()
         ozon_products.click_to_tabs_products(locator)
         text = ozon_products.get_element_products_text(locator_text)
-        assert text == text_to_check
+        assert_that(text, equal_to(text_to_check), 'проверка не сошлась')

@@ -1,7 +1,7 @@
 import time
 
 import pytest
-
+from hamcrest import assert_that, equal_to, greater_than
 from locators.sezon_locators import OzonSezonLocators as Sezon
 
 
@@ -28,7 +28,7 @@ class TestSezon:
         ozon_sezon.open_sezon()
         ozon_sezon.click_to_tabs_sezon(locator)
         text = ozon_sezon.get_element_sezon_text(locator_text)
-        assert text == text_to_check
+        assert_that(text, equal_to(text_to_check), 'проверка не сошлась')
 
     def test_reviews(self, ozon_sezon):
         ozon_sezon.open_sezon()
@@ -36,6 +36,7 @@ class TestSezon:
         ozon_sezon.click_to_tabs_sezon(Sezon.REVIEWS)
         text = ozon_sezon.get_element_sezon_text(Sezon.REVIEWS_VALUE)
         assert text == 'Отзывы'
+        assert_that(text, equal_to('Отзывы'), 'проверка не сошлась')
 
     # def test_question_asparagus(self, ozon_sezon):
     #     ozon_sezon.open_sezon()
@@ -66,7 +67,7 @@ class TestSezon:
         ozon_sezon.click_to_tabs_sezon(locator)
         ozon_sezon.switch_browser_tab()
         text = ozon_sezon.get_element_sezon_text(locator_text)
-        assert text == text_to_check
+        assert_that(text, equal_to(text_to_check), 'проверка не сошлась')
 
     def test_oo(self, ozon_sezon):
         ozon_sezon.open_sezon()
@@ -74,7 +75,7 @@ class TestSezon:
         ozon_sezon.find_element_and_click(Sezon.OO)
         time.sleep(5)
         text = ozon_sezon.get_element_sezon_text(Sezon.O_OO)
-        assert text == 'Уточнение адреса'
+        assert_that(text, equal_to('Уточнение адреса'), 'проверка не сошлась')
 
     def test_ttt(self, ozon_sezon):
         ozon_sezon.open_sezon()
@@ -92,21 +93,21 @@ class TestSezon:
         ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
         ozon_sezon.click_to_tabs_sezon(locator)
         text = ozon_sezon.get_element_sezon_text(locator_text)
-        assert text == text_to_check
+        assert_that(text, equal_to(text_to_check), 'проверка не сошлась')
 
     def test_c(self, ozon_sezon):
         ozon_sezon.open_sezon()
         ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
         ozon_sezon.find_element_and_click(Sezon.MOSCOW)
         text = ozon_sezon.get_element_sezon_text(Sezon.MOSCOW_VALUE)
-        assert text == 'Куда доставить заказ?'
+        assert_that(text, equal_to('Куда доставить заказ?'), 'проверка не сошлась')
 
     def test_collections(self, ozon_sezon):
         ozon_sezon.open_sezon()
         ozon_sezon.click_to_tabs_sezon(Sezon.TANGERINES)
         ozon_sezon.find_element_and_click(Sezon.PICK_UP_POINTS)
         text = ozon_sezon.get_element_sezon_text(Sezon.PICK_UP_POINTS_VALUE)
-        assert text == 'Москва - пункты выдачи заказов OZON'
+        assert_that(text, equal_to('Москва - пункты выдачи заказов OZON'), 'проверка не сошлась')
 
     @pytest.mark.skip('Не открывается модалка')
     def test_e(self, ozon_sezon):
@@ -116,4 +117,4 @@ class TestSezon:
         element = ozon_sezon.driver.find_element(*Sezon.E)
         element.click()
         text = ozon_sezon.get_element_sezon_text(Sezon.E_E)
-        assert text == 'Уточнение адреса'
+        assert_that(text, equal_to('Уточнение адреса'), 'проверка не сошлась')

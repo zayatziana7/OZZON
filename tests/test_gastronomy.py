@@ -1,7 +1,7 @@
 import pytest
 
 from locators.gastronomy_locators import OzonGastronomysLocators as Gastronomy
-
+from hamcrest import assert_that, equal_to, greater_than
 
 
 class TestGastronomy:
@@ -19,4 +19,4 @@ class TestGastronomy:
         ozon_gastronomy.open_gastronomy()
         ozon_gastronomy.click_to_tabs_gastronomy(locator)
         text = ozon_gastronomy.get_element_gastronomy_text(locator_text)
-        assert text == text_to_check
+        assert_that(text, equal_to(text_to_check), 'проверка не сошлась')

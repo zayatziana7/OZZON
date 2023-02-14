@@ -1,12 +1,11 @@
 import pytest
 
 from locators.ozon_fresh_locators import OzonFreshPageLocators as Fresh
+from hamcrest import assert_that, equal_to, greater_than
 
-
-class TestOzon:
-    def test_recipes(self, ozon):
-        ozon.open_ozon()
-        text = ozon.get_element_ozonfresh_text(Fresh.VAIUE_RECIRES)
+class TestOzon():
+    def test_recipes(self, ozon_recipes_page):
+        text = ozon_recipes_page.get_element_text(Fresh.VAIUE_RECIRES)
         assert text == "Рецепты"
 
     @pytest.mark.parametrize('locator, locator_text, text_to_check', [
@@ -20,8 +19,8 @@ class TestOzon:
 
 
     ])
-    def test_recipes_tab(self, ozon, locator, locator_text, text_to_check):
-        ozon.open_ozon()
-        ozon.click_to_tabs_ozonfresh(locator)
-        text = ozon.get_element_ozonfresh_text(locator_text)
-        assert text == text_to_check
+    def test_recipes_tab(self, ozon_recipes_page, locator, locator_text, text_to_check):
+        ozon_recipes_page.open_ozon()
+        ozon_recipes_page.open_ozonfresh_tab(locator)
+        text = ozon_recipes_page.get_element_text(locator_text)
+        assert_that(text, equal_to(text_to_check), 'проверка не сошлась')

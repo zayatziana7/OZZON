@@ -13,6 +13,8 @@ class OzonDairyPage(BasePage):
         return element.text
 
     def test_open_dairy(self):
-        self.click_to_tabs_dairy(OzonFreshPageLocators.OZON_FRESH)
         self.click_to_tabs_dairy(OzonFreshPageLocators.PRODUCTS)
         self.click_to_tabs_dairy(OzonProductsLocatorss.DAIRY)
+
+
+

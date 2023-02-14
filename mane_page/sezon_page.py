@@ -16,6 +16,5 @@ class OzonSezonPage(BasePage):
         return element.text
 
     def open_sezon(self):
-        self.click_to_tabs_sezon(Fresh.OZON_FRESH)
         self.click_to_tabs_sezon(Fresh.SEZON)
         self.click_to_tabs_sezon(OzonSezonLocators.VEGETABLES_FRUITS)

@@ -13,5 +13,4 @@ class OzonPetSuppliesPage(BasePage):
         return element.text
 
     def open_pet_supplies(self):
-        self.click_to_tabs_pet_supplies(OzonFreshPageLocators.OZON_FRESH)
         self.click_to_tabs_pet_supplies(OzonPetSuppliesLocators.PET_SUPPLIES)

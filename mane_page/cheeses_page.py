@@ -13,6 +13,5 @@ class OzonCheesesPage(BasePage):
         return element.text
 
     def open_tab_cheeses(self):
-        self.click_to_tabs_cheeses(OzonFreshPageLocators.OZON_FRESH)
         self.click_to_tabs_cheeses(OzonFreshPageLocators.PRODUCTS)
         self.click_to_tabs_cheeses(OzonProductsLocatorss.CHEESES)

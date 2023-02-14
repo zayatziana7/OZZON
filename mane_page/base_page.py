@@ -1,8 +1,12 @@
 from __future__ import annotations
 from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.wait import WebDriverWait
 import selenium.webdriver.support.expected_conditions as ec
+
+from locators.dairy_locators import OzonDairyLocators
+from locators.ozon_fresh_locators import OzonFreshPageLocators
 
 
 class BasePage:
@@ -77,4 +81,32 @@ class BasePage:
             if tab != current_tab:
                 self.driver.switch_to.window(tab)
         return self
+
+    def get_current_url(self) -> str:
+        """
+        Get current page's url
+        :return: url as a str
+        """
+        return self.driver.current_url
+
+    def get_int_from_text(self):
+        element = self.driver.find_element(*OzonDairyLocators.PRICE)
+        text = element.text
+        rezalt = ''
+        for value in text:
+            if value.isdigit():
+                rezalt += value
+        return int(rezalt)
+
+    def get_element_text(self, locator):
+        """
+        Возвращает текст для ассерта
+        :param locator:
+        :return:
+        """
+        element = self.wait_presence_of_element_located(locator)
+        return element.text
+
+    def open_page(self):
+        return self.find_element_and_click_via_script(OzonFreshPageLocators.OZON_FRESH)
 
